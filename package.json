@@ -34,6 +34,7 @@
     "start": "concurrently --kill-others \"npm run start-server\" \"npm run start-client\"",
     "start-client": "react-scripts start ",
     "start-server": "node ./api",
+    "enable-api-auth": "cp api/temp/article.json api/common/models/article.json",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
