@@ -21,7 +21,7 @@ Up until now, we've only used Fetch to make `GET` requests to our API (this is t
 
 To send a POST request, you will still use `fetch` - you will be passing `fetch` some additional data that will instruct it to use the POST request method.  Posting data to our API would look something like this:
 
-    fetch('http://localhost:3001/articles, {
+    fetch('http://localhost:3001/api/articles', {
       headers: {
         'Content-Type': 'application/json'
       },
