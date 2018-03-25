@@ -21,13 +21,15 @@ Up until now, we've only used Fetch to make `GET` requests to our API (this is t
 
 To send a POST request, you will still use `fetch` - you will be passing `fetch` some additional data that will instruct it to use the POST request method.  Posting data to our API would look something like this:
 
-    fetch('http://localhost:3001/api/articles', {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify(articleObject)
-    })
+```
+fetch('http://localhost:3001/api/articles', {
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  method: "POST",
+  body: JSON.stringify(articleObject)
+})
+```
 
 Note the second argument passed to `fetch` - an options object.  This object allows you to control specific aspects of the request that's made, such as headers and the request method.  
 
@@ -45,7 +47,7 @@ A new test has been added to verify this behavior - once all of your unit tests 
 ## The Add Article Page
 The Add Article Page will be used to display a form that will allow users to submit an article.  Let's first begin by creating the route and the page.
 
-The route that should display the Add Article Page should be `/add-article` - no parameters are necessary.  
+The route that should display the Add Article Page should be `/add-article` - no parameters are necessary.
 
 Once your page component and route are established, add a link to the Nav component that points to this page.
 
@@ -72,9 +74,9 @@ You can add the link to your Nav by adjusting this section of JSX to be:
 
 Once you've added the "Add An Article" link to your Nav.js component, verify that clicking the link redirects you to the appropriate route.
 
-Lastly, let's create the content that AddArticlePage.js should render.
+Lastly, let's create the content that `AddArticlePage.js` should render.
 
-We need to render a ```<form>```, and that form should contain 3 fields:
+We need to render a `<form>`, and that form should contain 3 fields:
 
  1. Title - a text input
  2. Byline - a text input
@@ -82,7 +84,7 @@ We need to render a ```<form>```, and that form should contain 3 fields:
 
 In addition to the form fields, you'll also need a submit button.
 
-Consider using react-bootstrap components to create these form elements (a demo form using this library can be found [here](https://react-bootstrap.github.io/components.html#forms-controls).
+Consider using react-bootstrap components to create these form elements (a demo form using this library can be found [here](https://react-bootstrap.github.io/components/forms/)).
 
 Once you have the form appearing on screen, you will need to build the behavior that should occur when the form is submitted.  The `<form>` element can fire a unique event - onSubmit.  Example:
 
