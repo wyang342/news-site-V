@@ -51,7 +51,7 @@ The route that should display the Add Article Page should be `/add-article` - no
 
 Once your page component and route are established, add a link to the Nav component that points to this page.
 
-If you've integrated react-bootstrap into your Nav.js component, you likely have a section of JSX that resembles this:
+If you've integrated react-bootstrap into your AppNav.js component, you likely have a section of JSX that resembles this:
 
     <Navbar.Collapse>
      <ul className="nav navbar-nav">
@@ -72,7 +72,7 @@ You can add the link to your Nav by adjusting this section of JSX to be:
      </ul>
      </Navbar.Collapse>
 
-Once you've added the "Add An Article" link to your Nav.js component, verify that clicking the link redirects you to the appropriate route.
+Once you've added the "Add An Article" link to your AppNav.js component, verify that clicking the link redirects you to the appropriate route.
 
 Lastly, let's create the content that `AddArticlePage.js` should render.
 
