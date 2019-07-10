@@ -1,9 +1,40 @@
 # News Site Part V
 
-## High Level Objectives
+Today in `news-site-V`, we're going to work on the ability to add an article to our news site and at the end, add a `log in` to our website. The `log in` will just be the UI (what shows up on the page), not the functionality itself.
+ 
+Let's first review a few HTTP methods:
+- **GET:** Grabbing data and resources from a server. Remember that you can add filters into the query string. An example: `GET http://localhost:3001/api/articles/?filter={"where": {"section": "opinion"}}`
+- **POST:** Creates new records. You will use this today to create a new article
+- **PATCH / PUT:** Updating a record that already exists. You will use these methods to edit an existing article today
+- **DELETE:** Deletes a record
 
- 1. Add the ability to add an article to the site.
- 2. Stub out a login page
+We've become kind of familiar with the `fetch` method for JS. We have been using it for mostly `GET` requests. Here is an example:
+
+```js
+fetch('https://jsonip.com') // makes a request to this URL
+  .then((response) => response.json()) // after the request is made, you THEN get a Promise as a response. After I receive the Promise, I turn it into a JSON object
+  .catch((error) => console.log(error)); // in the case that there's an error, CATCH it and console the error
+```
+
+More popularly, however, we can use `fetch` to create `POST` requests. Here is an example:
+
+```javascript
+const articleObject = { title: 'test', byline: 'byline test', abstract: 'asdf' };
+
+fetch('http://localhost:3001/api/articles', {
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  method: 'POST',
+  body: JSON.stringify(articleObject) // whenever you make an API request, you have to stringify your request
+}).then((response) => {
+  return response.json();
+}).then((json) => {
+  console.log(json);
+})
+```
+
+There are a number of differences between the `GET` and `POST` examples with fetch. The `POST` `fetch` request includes `headers`, `method`, and `body`. `headers` contains data that the server needs to know what type of data it's about to receive. The `method` tells the server what kind of request is being made. Finally, the `body` contains the contents (i.e., `body`) of the request you are making.
 
 ## Initial Setup
 
@@ -11,15 +42,56 @@ You will want to copy over the work you did in the News Site IV challenge into t
 
 **After copying over your source directory, run `npm run update-tests`.**  This command will update a few unit tests in your `src/` directory.
 
-Once you've performed the steps above, run `npm run start` - verify that no errors appear in your browser console or terminal, and that your app functions the same as it did in the last challenge.  Also try running `npm run test` - you should see a single failure coming from the `ArticlesAPI.js` module.  This is to be expected - the test that's failing is because the functionality the test is attempting to run hasn't been built yet - we'll be doing that next.
+Once you've performed the steps above, run `npm install ; npm run start` - verify that no errors appear in your browser console or terminal, and that your app functions the same as it did in the last challenge. Also try running `npm run test` - you should see a single failure coming from the `ArticlesAPI.js` module. This is to be expected - the test that's failing is because the functionality the test is attempting to run hasn't been built yet - we'll be doing that next. 
+
+Please note that the tests are extremely strict. In the case that you decided to style it using Reactstrap or any other type of non-basic HTML tagging system, the tests will fail. You can feel free to ignore them in this case.
+
+## Testing Fetch
+Let's test this `fetch` command in the console: 
+
+```js
+const articleObject = { title: 'test', byline: 'byline test', abstract: 'asdf' };
+
+fetch('http://localhost:3001/api/articles', {
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  method: 'POST',
+  body: JSON.stringify(articleObject) // whenever you make an API request, you have to stringify your request
+}).then((response) => {
+  return response.json();
+}).then((json) => {
+  console.log(json);
+})
+```
+
+If you refresh the page and scroll to the bottom, you'llsee our new `test` article! What if you have a bad request? Let's try passing an incomplete data set:
+
+```javascript
+const articleObject = { byline: 'byline test', abstract: 'asdf' };
+
+fetch('http://localhost:3001/api/articles', {
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  method: 'POST',
+  body: JSON.stringify(articleObject) // whenever you make an API request, you have to stringify your request
+}).then((response) => {
+  return response.json();
+}).then((json) => {
+  console.log(json);
+})
+```
+
+Check the console for some errors. Part of your job today is to handle these types of issues/errors.
 
 ## Release 0: ArticlesAPI.addArticle()
 
 To start, let's build a function within `ArticlesAPI.js` that we can use to send article data to the API.  
 
-Up until now, we've only used Fetch to make `GET` requests to our API (this is the default request method `fetch` uses).  When reading data from an API (such as reading a list of articles), it's customary to use the GET request method.  When writing/submitting data, it's customary to use the POST request method - POST allows data to be sent securely.  
+Up until now, we've only used Fetch to make `GET` requests to our API (this is the default request method `fetch` uses).  When reading data from an API (such as reading a list of articles), it's customary to use the GET request method.  When writing/submitting data, it's customary to use the POST request method - POST allows data to be sent securely.
 
-To send a POST request, you will still use `fetch` - you will be passing `fetch` some additional data that will instruct it to use the POST request method.  Posting data to our API would look something like this:
+To send a POST request, you will still use `fetch` by passing some additional data that will instruct it to use the POST request method. Posting data to our API would look something like this:
 
 ```
 return fetch('http://localhost:3001/api/articles', {
@@ -31,9 +103,9 @@ return fetch('http://localhost:3001/api/articles', {
 })
 ```
 
-Note the second argument passed to `fetch` - an options object.  This object allows you to control specific aspects of the request that's made, such as headers and the request method.  
+Note the second argument passed to `fetch` - an object of options.  This object allows you to control specific aspects of the request that's made, such as headers and the request method.  
 
-Headers allow you to pass additional information with a request.  Here, we're including a header that says the type of content we're going to be sending - JSON.  Headers can also include things like authentication tokens, instructions on how to handle cached files, to name a few.
+Headers allow you to pass additional information with a request.  Here, we're including a header that says that we are sending JSON. Headers can also include things like authentication tokens, instructions on how to handle cached files, to name a few.
 
 The `method` key in the options object defines the type of request that should be made.  By default, this is set to `GET` - here, we're setting it to `POST`.
 
@@ -105,6 +177,6 @@ If you're using react-bootstrap, revisit [this](https://react-bootstrap.github.i
 After you have form UI completed, attach an event listener to the form's onSubmit event.  In your event handler, simply console.log the values in the email and password fields.
 
 ## Secondary Objectives
-If you haven't noticed, there is a bit of a flaw in our AddArticle.js component - there is no error handling.  If you go to the AddArticle.js page, leave all of the form fields empty, and push submit, the API request to submit the article will fail - our UI will display the success message, however.  
+If you haven't noticed, there is a bit of a flaw in our AddArticle.js component - there is no error handling.  If you go to the AddArticle.js page, leave all of the form fields empty, and push submit, the API request to submit the article will fail but no messaging is portrayed.  
 
 This can be alleviated by adding a bit more logic into the ArticlesAPI.addArticle().then() callback function.  When the required data isn't submitted, the API will respond with a JSON object that contains an "error" key.  "error" is an object that contains details about the error - an error message, the fields that were invalid.  If you store this data into the AddArticle.js component's state, it will be possible to render() information about errors when they exist.  As far as the specifics, I leave that up to you.
