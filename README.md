@@ -67,12 +67,12 @@ Consider using react-bootstrap components to create these form elements (a demo 
 
 Once you have the form appearing on screen, you will need to build the behavior that should occur when the form is submitted.  The `<form>` element can fire a unique event - onSubmit.  Example:
 
-    <form onSubmit={this.handleFormSubmit.bind(this)}>
+    <form onSubmit={this.handleFormSubmit}>
     <form>
 
 The event object that's passed into your event handler will contain references to all of the input fields through a property called "elements".  Example:
 
-    handleFormSubmit(event) {
+    handleFormSubmit = (event) => {
       console.log(event.target.elements[0].value); // This will print out the value contained within the first input field on the form.
     }
 
