@@ -65,7 +65,7 @@ fetch('http://localhost:3001/api/articles', {
 })
 ```
 
-If you refresh the page and scroll to the bottom, you'llsee our new `test` article! What if you have a bad request? Let's try passing an incomplete data set:
+If you refresh the page and scroll to the bottom, you'll see our new `test` article! What if you have a bad request? Let's try passing an incomplete data set:
 
 ```javascript
 const articleObject = { byline: 'byline test', abstract: 'asdf' };
@@ -116,7 +116,7 @@ In `ArticlesAPI.js`, you should define a new function called `addArticle`.  This
 A new test has been added to verify this behavior - once all of your unit tests succeed, you may continue to the next section.
 
 
-## The Add Article Page
+## Release 1: The Add Article Page
 The Add Article Page will be used to display a form that will allow users to submit an article.  Let's first begin by creating the route and the page.
 
 The route that should display the Add Article Page should be `/add-article` - no parameters are necessary.
@@ -165,7 +165,7 @@ You will then want to pass it to ArticlesAPI.addArticle(), and then use the then
 
 As far as the callback function logic goes, **we ultimately want to show a success message when an article is submitted.**  I'll leave it up to you to determine how to best accomplish this, but your solution will likely involve using setState within this callback function - and setting some sort of indicator within state that says that the form was submitted (this.state.hasArticleBeenSubmitted, perhaps?)  You can then build some conditional logic into your render function based off of this state variable that either shows the Add Article form, or the a message that should appear after an article is submitted. 
 
-## The Log In Page
+## Release 2: The Log In Page
 Again, we'll want to create a new page.  By now, you probably know the routine.  The page component should be named LoginPage.js, and the route that should load this component should be `/login`.
 
 This page should also display a form.  Within this form, there should be two text inputs - one for an email, and one for a password - and a submit button.
