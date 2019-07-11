@@ -135,7 +135,7 @@ We need to render a `<form>`, and that form should contain 3 fields:
 
 In addition to the form fields, you'll also need a submit button.
 
-Consider using react-bootstrap components to create these form elements (a demo form using this library can be found [here](https://react-bootstrap.github.io/components/forms/)).
+Consider using react-bootstrap components to create these form elements (a demo form using this library can be found [here](https://5c507d49471426000887a6a7--react-bootstrap.netlify.com/components/forms/)).
 
 Once you have the form appearing on screen, you will need to build the behavior that should occur when the form is submitted.  The `<form>` element can fire a unique event - onSubmit.  Example:
 
