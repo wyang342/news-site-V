@@ -113,7 +113,7 @@ Lastly, the `body` key contains the `POST` payload - the data that will be sent 
 
 In `ArticlesAPI.js`, you should define a new function called `addArticle`.  This function should accept a single parameter - `articleObject`.  This function should perform a Fetch call similar to the one above - you'll want to convert the object that's passed into the function into a JSON string, and set the `body` property of the options object (the second parameter in the Fetch call) to this JSON string.  
 
-A new test has been added to verify this behavior - once all of your unit tests succeed, you may continue to the next section.
+A new test has been added to verify this behavior - once all of your unit tests succeed (besides `it('renders Add An Article link'`), you may continue to the next section.
 
 
 ## Release 1: The Add Article Page
