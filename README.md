@@ -13,13 +13,13 @@ We've become kind of familiar with the `fetch` method for JS. We have been using
 ```js
 fetch('https://jsonip.com') // makes a request to this URL
   .then((response) => response.json()) // after the request is made, you THEN get a Promise as a response. After I receive the Promise, I turn it into a JSON object
-  .catch((error) => console.log(error)); // in the case that there's an error, CATCH it and console the error
+  .catch((error) => console.log(error)) // in the case that there's an error, CATCH it and console the error
 ```
 
 More popularly, however, we can use `fetch` to create `POST` requests. Here is an example:
 
 ```javascript
-const articleObject = { title: 'test', byline: 'byline test', abstract: 'asdf' };
+const articleObject = { title: 'test', byline: 'byline test', abstract: 'asdf' }
 
 fetch('http://localhost:3001/api/articles', {
   headers: {
@@ -28,9 +28,9 @@ fetch('http://localhost:3001/api/articles', {
   method: 'POST',
   body: JSON.stringify(articleObject) // whenever you make an API request, you have to stringify your request
 }).then((response) => {
-  return response.json();
+  return response.json()
 }).then((json) => {
-  console.log(json);
+  console.log(json)
 })
 ```
 
@@ -50,7 +50,7 @@ Please note that the tests are extremely strict. In the case that you decided to
 Let's test this `fetch` command in the console: 
 
 ```js
-const articleObject = { title: 'test', byline: 'byline test', abstract: 'asdf' };
+const articleObject = { title: 'test', byline: 'byline test', abstract: 'asdf' }
 
 fetch('http://localhost:3001/api/articles', {
   headers: {
@@ -59,16 +59,16 @@ fetch('http://localhost:3001/api/articles', {
   method: 'POST',
   body: JSON.stringify(articleObject) // whenever you make an API request, you have to stringify your request
 }).then((response) => {
-  return response.json();
+  return response.json()
 }).then((json) => {
-  console.log(json);
+  console.log(json)
 })
 ```
 
 If you refresh the page and scroll to the bottom, you'll see our new `test` article! What if you have a bad request? Let's try passing an incomplete data set:
 
 ```javascript
-const articleObject = { byline: 'byline test', abstract: 'asdf' };
+const articleObject = { byline: 'byline test', abstract: 'asdf' }
 
 fetch('http://localhost:3001/api/articles', {
   headers: {
@@ -77,9 +77,9 @@ fetch('http://localhost:3001/api/articles', {
   method: 'POST',
   body: JSON.stringify(articleObject) // whenever you make an API request, you have to stringify your request
 }).then((response) => {
-  return response.json();
+  return response.json()
 }).then((json) => {
-  console.log(json);
+  console.log(json)
 })
 ```
 
@@ -145,7 +145,7 @@ Once you have the form appearing on screen, you will need to build the behavior 
 The event object that's passed into your event handler will contain references to all of the input fields through a property called "elements".  Example:
 
     handleFormSubmit = (event) => {
-      console.log(event.target.elements[0].value); // This will print out the value contained within the first input field on the form.
+      console.log(event.target.elements[0].value) // This will print out the value contained within the first input field on the form.
     }
 
 Within your `<form>`'s onSubmit event handler, you will want to first construct an object that resembles the following:
