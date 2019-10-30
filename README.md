@@ -172,7 +172,7 @@ This page should also display a form.  Within this form, there should be two tex
 
 Password fields are slightly different than text inputs (`<input type="text">`.  Password input fields hide the text that's typed into the text field, as you're probably familiar.  
 
-If you're using react-bootstrap, revisit [this](https://react-bootstrap.github.io/components.html#forms-controls) section for examples of how to create a password field using the components from that library.  If you're using vanilla HTML, a password input field would look like this:  `<input type="password" />`
+If you're using react-bootstrap, revisit [this](https://reactstrap.github.io/components/form/) section for examples of how to create a password field using the components from that library.  If you're using vanilla HTML, a password input field would look like this:  `<input type="password" />`
 
 After you have form UI completed, attach an event listener to the form's onSubmit event.  In your event handler, simply console.log the values in the email and password fields.
 
