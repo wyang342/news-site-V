@@ -1,4 +1,9 @@
-import ArticlesAPI from './ArticlesAPI';
+import {
+  fetchArticleByID,
+  fetchArticles,
+  fetchArticlesBySection,
+  addArticle,
+} from './ArticlesAPI';
 import fetchMock from 'fetch-mock';
 require('isomorphic-fetch');
 
@@ -6,9 +11,9 @@ afterEach(() => {
   fetchMock.restore();
 })
 
-it('calls ArticlesAPI.fetchArticleByID(1)', (done) => {
-  fetchMock.get('http://localhost:3001/api/articles/1', {success: true});
-  return ArticlesAPI.fetchArticleByID(1)
+it('calls fetchArticleByID(1)', (done) => {
+  fetchMock.get('http://localhost:3001/api/articles/1', { success: true });
+  return fetchArticleByID(1)
     .then((json) => {
       expect(json.success).toEqual(true);
       done();
@@ -18,9 +23,9 @@ it('calls ArticlesAPI.fetchArticleByID(1)', (done) => {
     });;
 });
 
-it('calls ArticlesAPI.fetchArticles()', (done) => {
-  fetchMock.get('http://localhost:3001/api/articles', {success: true});
-  return ArticlesAPI.fetchArticles()
+it('calls fetchArticles()', (done) => {
+  fetchMock.get('http://localhost:3001/api/articles', { success: true });
+  return fetchArticles()
     .then((json) => {
       expect(json.success).toEqual(true);
       done();
@@ -30,9 +35,9 @@ it('calls ArticlesAPI.fetchArticles()', (done) => {
     });;
 });
 
-it('calls ArticlesAPI.fetchArticlesBySection(\'opinion\')', (done) => {
-  fetchMock.get('http://localhost:3001/api/articles?filter={"where":{"section":"opinion"}}', {success: true});
-  return ArticlesAPI.fetchArticlesBySection('opinion')
+it('calls fetchArticlesBySection(\'opinion\')', (done) => {
+  fetchMock.get('http://localhost:3001/api/articles?filter={"where":{"section":"opinion"}}', { success: true });
+  return fetchArticlesBySection('opinion')
     .then((json) => {
       expect(json.success).toEqual(true);
       done();
@@ -42,10 +47,10 @@ it('calls ArticlesAPI.fetchArticlesBySection(\'opinion\')', (done) => {
     });
 });
 
-it('submits an article by calling ArticlesAPI.addArticle()', (done) => {
-  const request = fetchMock.post('http://localhost:3001/api/articles', {success: true});
-  const articleObject = {title: 'test', byline: 'title', abstract: 'adsf'};
-  return ArticlesAPI.addArticle(articleObject)
+it('submits an article by calling addArticle()', (done) => {
+  const request = fetchMock.post('http://localhost:3001/api/articles', { success: true });
+  const articleObject = { title: 'test', byline: 'title', abstract: 'adsf' };
+  return addArticle(articleObject)
     .then((json) => {
       const requestBody = request._calls[0][1].body;
       expect(JSON.parse(requestBody)).toEqual(articleObject);

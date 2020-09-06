@@ -38,7 +38,7 @@
     "start-client": "react-scripts start ",
     "start-server": "node ./api",
     "enable-api-auth": "cp api/temp/article.json api/common/models/article.json",
-    "update-tests": "cp api/temp/ArticlesAPI.t.js src/api/ArticlesAPI.test.js && cp api/temp/AppNav.t.js src/components/AppNav/AppNav.test.js",
+    "update-tests": "cp api/temp/ArticlesAPI.t.js src/api/ArticlesAPI.test.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

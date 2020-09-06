@@ -42,13 +42,11 @@ There are a number of differences between the `GET` and `POST` examples with fet
 
 ## Initial Setup
 
-You will want to copy over the work you did in the News Site IV challenge into this repo - this time, you can copy and paste the entire `src` directory from the `news-site-IV` repo and paste it directly into this repo.
+If you'd like to use your own code from `news-site-IV`, you can copy and paste the entire `src` directory from the `news-site-IV` repo and replace the starter `src` code in this repo.
 
 **After copying over your source directory, run `npm run update-tests`.**  This command will update a few unit tests in your `src/` directory.
 
 Once you've performed the steps above, run `npm install ; npm run start` - verify that no errors appear in your browser console or terminal, and that your app functions the same as it did in the last challenge. Also try running `npm run test` - you should see a single failure coming from the `ArticlesAPI.js` module. This is to be expected - the test that's failing is because the functionality the test is attempting to run hasn't been built yet - we'll be doing that next.
-
-Please note that the tests are extremely strict. In the case that you decided to style it using Reactstrap or any other type of non-basic HTML tagging system, the tests will fail. You can feel free to ignore them in this case.
 
 ## Testing Fetch
 Let's test this `fetch` command in the console:
@@ -117,7 +115,7 @@ Lastly, the `body` key contains the `POST` payload - the data that will be sent 
 
 In `ArticlesAPI.js`, you should define a new function called `addArticle`.  This function should accept a single parameter - `articleObject`.  This function should perform a Fetch call similar to the one above - you'll want to convert the object that's passed into the function into a JSON string, and set the `body` property of the options object (the second parameter in the Fetch call) to this JSON string.
 
-A new test has been added to verify this behavior - once all of your unit tests succeed (besides `it('renders Add An Article link'`), you may continue to the next section.
+A new test has been added to verify this behavior - once all of your unit tests succeed, you may continue to the next section.
 
 
 ## Release 1: The Add Article Page
@@ -139,12 +137,12 @@ We need to render a `<form>`, and that form should contain 3 fields:
 
 In addition to the form fields, you'll also need a submit button.
 
-Consider using react-bootstrap components to create these form elements (a demo form using this library can be found [here](https://5c507d49471426000887a6a7--react-bootstrap.netlify.com/components/forms/)).
+Consider using either `react-bootstrap` or `reactstrap` components to create these form elements. A demo form using `react-bootstrap` can be found [here](https://5c507d49471426000887a6a7--react-bootstrap.netlify.com/components/forms/), and documentation for `reactstrap` forms can be found [here](https://reactstrap.github.io/components/form/).
 
 Once you have the form appearing on screen, you will need to build the behavior that should occur when the form is submitted.  The `<form>` element can fire a unique event - onSubmit.  Example:
 
     <form onSubmit={this.handleFormSubmit}>
-    <form>
+    </form>
 
 The event object that's passed into your event handler will contain references to all of the input fields through a property called "elements".  Example:
 
@@ -176,11 +174,13 @@ This page should also display a form.  Within this form, there should be two tex
 
 Password fields are slightly different than text inputs (`<input type="text">`.  Password input fields hide the text that's typed into the text field, as you're probably familiar.
 
-If you're using react-bootstrap, revisit [this](https://reactstrap.github.io/components/form/) section for examples of how to create a password field using the components from that library.  If you're using vanilla HTML, a password input field would look like this:  `<input type="password" />`
+If you're using `react-bootstrap`, revisit [this](https://reactstrap.github.io/components/form/) section for examples of how to create a password field using the components from that library. Or if you're using `reactstrap`, documentation can be found [here](https://reactstrap.github.io/components/form/). If you're using vanilla HTML, a password input field would look like this:  `<input type="password" />`
 
 After you have form UI completed, attach an event listener to the form's onSubmit event.  In your event handler, simply console.log the values in the email and password fields.
 
 ## Secondary Objectives
 If you haven't noticed, there is a bit of a flaw in our AddArticle.js component - there is no error handling.  If you go to the AddArticle.js page, leave all of the form fields empty, and push submit, the API request to submit the article will fail but no messaging is portrayed.
 
-This can be alleviated by adding a bit more logic into the ArticlesAPI.addArticle().then() callback function.  When the required data isn't submitted, the API will respond with a JSON object that contains an "error" key.  "error" is an object that contains details about the error - an error message, the fields that were invalid.  If you store this data into the AddArticle.js component's state, it will be possible to render() information about errors when they exist.  As far as the specifics, I leave that up to you.
+This can be alleviated by adding a bit more logic into the `ArticlesAPI.addArticle().then()` callback function.  When the required data isn't submitted, the API will respond with a JSON object that contains an "error" key.  "error" is an object that contains details about the error - an error message, the fields that were invalid.  If you store this data into the AddArticle.js component's state, it will be possible to `render()` information about errors when they exist.  As far as the specifics, I leave that up to you.
+
+As always, if you finish early, go ahead and create your `functional-version` branch and refactor!
