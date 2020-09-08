@@ -184,3 +184,5 @@ If you haven't noticed, there is a bit of a flaw in our AddArticle.js component 
 This can be alleviated by adding a bit more logic into the `ArticlesAPI.addArticle().then()` callback function.  When the required data isn't submitted, the API will respond with a JSON object that contains an "error" key.  "error" is an object that contains details about the error - an error message, the fields that were invalid.  If you store this data into the AddArticle.js component's state, it will be possible to `render()` information about errors when they exist.  As far as the specifics, I leave that up to you.
 
 As always, if you finish early, go ahead and create your `functional-version` branch and refactor!
+
+**Look ahead:** If you really want another task, start looking into the documentation for [React's Context API](https://reactjs.org/docs/context.html). Think about how we might incorporate this now that we have a login page...
