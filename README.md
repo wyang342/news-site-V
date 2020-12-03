@@ -9,7 +9,7 @@
 Let's first review a few HTTP methods:
 - **GET:** Grabbing data and resources from a server. Remember that you can add filters into the query string. An example: `GET http://localhost:3001/api/articles/?filter={"where": {"section": "opinion"}}`
 - **POST:** Creates new records. You will use this today to create a new article
-- **PATCH / PUT:** Updating a record that already exists. You will use these methods to edit an existing article today
+- **PATCH / PUT:** Updating a record that already exists.
 - **DELETE:** Deletes a record
 
 We've become kind of familiar with the `fetch` method for JS. We have been using it for mostly `GET` requests. Here is an example:
